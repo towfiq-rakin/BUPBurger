@@ -16,24 +16,19 @@ public class ProjectDetails extends JPanel {
 
         //======== panel ========
         {
+
             //---- label1 ----
-            label1.setIcon(new ImageIcon(getClass().getResource("/img/contribution.png")));
+            label1.setIcon(new ImageIcon(getClass().getResource("/img/logo-3.png")));
 
             GroupLayout panelLayout = new GroupLayout(panel);
             panel.setLayout(panelLayout);
             panelLayout.setHorizontalGroup(
                 panelLayout.createParallelGroup()
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label1, GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
             );
             panelLayout.setVerticalGroup(
                 panelLayout.createParallelGroup()
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(label1, GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(label1, GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
             );
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
