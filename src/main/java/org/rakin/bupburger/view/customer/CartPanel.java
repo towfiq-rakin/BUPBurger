@@ -11,16 +11,11 @@ public class CartPanel {
 
     public CartPanel() {
         initComponents();
+        TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
+        TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
     }
 
     private void initComponents() {
-
-//        String foods = TOTAL_FOOD_NUMBER == 0 ? "0" : String.valueOf(TOTAL_FOOD_NUMBER);
-//        String cost = TOTAL_COST == 0 ? "0" : String.valueOf(TOTAL_COST);
-
-        TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
-        TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
-
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
         label6 = new JLabel();
@@ -60,20 +55,18 @@ public class CartPanel {
                 panelLayout.createParallelGroup()
                     .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(label6, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                        .addComponent(label6, GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addContainerGap(36, Short.MAX_VALUE)
+                        .addContainerGap(55, Short.MAX_VALUE)
                         .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(label2)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(TOTAL_FOODS_LABEL))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(label3)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TOTAL_COST_LABEL)))
-                        .addGap(31, 31, 31))
+                            .addComponent(label3)
+                            .addComponent(label2))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLayout.createParallelGroup()
+                            .addComponent(TOTAL_FOODS_LABEL)
+                            .addComponent(TOTAL_COST_LABEL))
+                        .addGap(41, 41, 41))
             );
             panelLayout.setVerticalGroup(
                 panelLayout.createParallelGroup()
@@ -88,7 +81,7 @@ public class CartPanel {
                         .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label3)
                             .addComponent(TOTAL_COST_LABEL))
-                        .addContainerGap(18, Short.MAX_VALUE))
+                        .addContainerGap(28, Short.MAX_VALUE))
             );
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

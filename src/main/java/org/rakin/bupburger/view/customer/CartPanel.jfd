@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp label6::::233:x, space :::p}, seq t {space ::36:x, par t {seq t {comp label2:::p::p, space u:::p, comp TOTAL_FOODS_LABEL:::p::p}, seq t {comp label3:::p::p, space :::p, comp TOTAL_COST_LABEL:::p::p}}, space :p:31:p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp label6:::p::p, space s:::p, par b {comp label2::b:p::p, comp TOTAL_FOODS_LABEL::b:p::p}, space :p:12:p, par b {comp label3::b:p::p, comp TOTAL_COST_LABEL::b:p::p}, space ::18:x}}"
+			"$horizontalGroup": "par l {seq l {space :::p, comp label6::::268:x, space :::p}, seq t {space ::55:x, par t {comp label3:::p::p, comp label2:::p::p}, space s:::p, par l {comp TOTAL_FOODS_LABEL:::p::p, comp TOTAL_COST_LABEL::l:p::p}, space :p:41:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label6:::p::p, space s:::p, par b {comp label2::b:p::p, comp TOTAL_FOODS_LABEL::b:p::p}, space :p:12:p, par b {comp label3::b:p::p, comp TOTAL_COST_LABEL::b:p::p}, space ::28:x}}"
 		} ) {
 			name: "panel"
 			"background": new java.awt.Color( 0, 0, 0, 255 )
@@ -46,7 +46,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 5 )
-			"size": new java.awt.Dimension( 245, 155 )
+			"size": new java.awt.Dimension( 280, 165 )
 		} )
 	}
 }

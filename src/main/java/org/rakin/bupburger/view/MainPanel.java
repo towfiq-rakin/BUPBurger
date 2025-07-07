@@ -34,7 +34,7 @@ public class MainPanel {
             buttonGetStarted.setText("Get Started");
             buttonGetStarted.setFont(new Font("Segoe UI", Font.BOLD, 22));
             buttonGetStarted.setBorderPainted(false);
-            buttonGetStarted.setBackground(new Color(0x6699ff));
+            buttonGetStarted.setBackground(new Color(0x006600));
             buttonGetStarted.setForeground(Color.white);
             buttonGetStarted.addActionListener(e -> {
 			getStarted(e);
