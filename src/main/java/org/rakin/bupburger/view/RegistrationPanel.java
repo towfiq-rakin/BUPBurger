@@ -1,6 +1,7 @@
 package org.rakin.bupburger.view;
 
 import org.rakin.bupburger.dao.UserDao;
+import org.rakin.bupburger.util.EmailService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,6 +19,8 @@ public class RegistrationPanel extends JPanel {
     UserDao userDao = applicationContext.getBean("userDao", UserDao.class);
 
     private String selectedGender = null;
+    private String verificationCode;
+    private boolean isEmailVerified = false;
 
     public RegistrationPanel() {
 
@@ -65,14 +68,37 @@ public class RegistrationPanel extends JPanel {
         String confirmPassword = String.valueOf(confirmPasswordTF.getPassword());
 
         if (!username.isEmpty() && !email.isEmpty() && !phone.isEmpty() && password.equals(confirmPassword)) {
-            if (userDao.insertRow(username, email, password, phone, selectedGender)) {
-                LoginPanel loginPanel = new LoginPanel();
-                mainFrame.setContentPane(loginPanel.panel);
-                mainFrame.pack();
-                mainFrame.setVisible(true);
-                dialogueBox("Registration Successful");
-            } else dialogueBox("Fill out all the fields properly.");
-        } else dialogueBox("Fill out all the fields properly.");
+            if (!isEmailVerified) {
+                // Send verification code
+                verificationCode = EmailService.sendVerificationCode(email);
+                if (verificationCode != null) {
+                    String userInput = JOptionPane.showInputDialog(this,
+                            "Please check your email and enter the verification code:",
+                            "Email Verification",
+                            JOptionPane.PLAIN_MESSAGE);
+
+                    if (userInput != null && userInput.equals(verificationCode)) {
+                        isEmailVerified = true;
+                        // Proceed with registration
+                        if (userDao.insertRow(username, email, password, phone, selectedGender)) {
+                            LoginPanel loginPanel = new LoginPanel();
+                            mainFrame.setContentPane(loginPanel.panel);
+                            mainFrame.pack();
+                            mainFrame.setVisible(true);
+                            dialogueBox("Registration Successful");
+                        } else {
+                            dialogueBox("Registration failed. Please try again.");
+                        }
+                    } else {
+                        dialogueBox("Invalid verification code. Please try again.");
+                    }
+                } else {
+                    dialogueBox("Failed to send verification code. Please try again.");
+                }
+            }
+        } else {
+            dialogueBox("Fill out all the fields properly.");
+        }
     }
 
     private void registerMouseClicked(MouseEvent e) {
