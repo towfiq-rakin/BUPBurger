@@ -120,6 +120,8 @@ public class ProfileModifyPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label5 ----
             label5.setText("Modify Details");
             label5.setFont(new Font("Segoe UI", Font.BOLD, 45));

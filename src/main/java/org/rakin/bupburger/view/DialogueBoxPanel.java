@@ -26,6 +26,9 @@ public class DialogueBoxPanel extends JPanel {
         label = new JLabel();
         okButton = new JButton();
 
+        //======== this ========
+        setBackground(Color.black);
+
         //---- label ----
         label.setText("Fill out all the fields perperly.");
         label.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));

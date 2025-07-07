@@ -91,6 +91,10 @@ public class SearchPanel extends JPanel {
         } catch (Exception ignored) { }
     }
 
+    private void searchFoodTFInputMethodTextChanged(InputMethodEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
@@ -105,6 +109,8 @@ public class SearchPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label1 ----
             label1.setText("Search Foods");
             label1.setFont(new Font("Segoe UI", Font.BOLD, 45));
@@ -142,6 +148,7 @@ public class SearchPanel extends JPanel {
                 public void caretPositionChanged(InputMethodEvent e) {}
                 @Override
                 public void inputMethodTextChanged(InputMethodEvent e) {
+                    searchFoodTFInputMethodTextChanged(e);
                 }
             });
             searchFoodTF.addKeyListener(new KeyAdapter() {

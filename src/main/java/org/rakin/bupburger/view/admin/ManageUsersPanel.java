@@ -78,6 +78,10 @@ public class ManageUsersPanel extends JPanel {
         catch (Exception ignored) { }
     }
 
+    private void close(ActionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
@@ -89,6 +93,8 @@ public class ManageUsersPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label5 ----
             label5.setText("Manage Users");
             label5.setFont(new Font("Segoe UI", Font.BOLD, 45));
@@ -112,6 +118,7 @@ public class ManageUsersPanel extends JPanel {
             deleteButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
             deleteButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             deleteButton.addActionListener(e -> {
+			close(e);
 			delete(e);
 		});
 
@@ -120,6 +127,7 @@ public class ManageUsersPanel extends JPanel {
             modifyButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
             modifyButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             modifyButton.addActionListener(e -> {
+			close(e);
 			modify(e);
 		});
 

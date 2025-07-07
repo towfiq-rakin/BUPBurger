@@ -50,6 +50,10 @@ public class AddFoodsPanel extends JPanel {
         }
     }
 
+    private void close(ActionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
@@ -67,6 +71,8 @@ public class AddFoodsPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label5 ----
             label5.setText("Add Foods");
             label5.setFont(new Font("Segoe UI", Font.BOLD, 45));
@@ -77,6 +83,7 @@ public class AddFoodsPanel extends JPanel {
             addFoodButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
             addFoodButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             addFoodButton.addActionListener(e -> {
+			close(e);
 			addFood(e);
 		});
 

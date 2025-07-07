@@ -106,6 +106,10 @@ public class ModifyUser extends JPanel {
         subAdminPanel.validate();
     }
 
+    private void confirm(ActionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         label5 = new JLabel();
@@ -125,6 +129,9 @@ public class ModifyUser extends JPanel {
         otherRadioButton = new JRadioButton();
         passwordTF = new JPasswordField();
 
+        //======== this ========
+        setBackground(Color.black);
+
         //---- label5 ----
         label5.setText("Modify User");
         label5.setFont(new Font("Segoe UI", Font.BOLD, 35));
@@ -134,6 +141,7 @@ public class ModifyUser extends JPanel {
         confirmButton.setText("Modify");
         confirmButton.setFont(new Font("Segoe UI", Font.BOLD, 20));
         confirmButton.addActionListener(e -> {
+			confirm(e);
 			modifyButton(e);
 		});
 

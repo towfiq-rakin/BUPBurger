@@ -1,13 +1,14 @@
-JFDML JFormDesigner: "7.0.7.0.1134" Java: "17.0.3" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {par l {seq {space :p:24:p, comp logo:::p:214:p}, par l:l::p {comp browseButton::::255:x, comp searchButton::l:::x}, comp userProfileButton:::p:255:p, comp projectDetailsButton:::p:255:p, seq l {space :::p, par l:::p {comp usernameLabel::l:::x, comp logoutLabel::l:p:249:p}}, comp viewCart::t:p:255:p, comp foodCartButton::t:p:255:p}, space :p:42:p, comp subHomePanel:::::x}}"
+			"$horizontalGroup": "par l {seq t {par l:::p {seq l {space :::p, par l:::p {comp usernameLabel::l:::x, comp logoutLabel::l:p:249:p}}, seq l {space :p:24:p, par l {comp projectDetailsButton::l:p:231:p, par l {comp userProfileButton::l:p:231:p, par l {comp foodCartButton::t:::x, comp viewCart::t:::x, comp searchButton::t:::x, comp browseButton::t:::x, seq {comp logo:::p:214:p, space :0:0:x}}}}}}, space :p:42:p, comp subHomePanel:::::x}}"
 			"$verticalGroup": "par l {seq t {space :p:21:p, comp logo:::p:89:p, space u:::p, comp browseButton:::p:52:p, space :::p, comp searchButton:::p:52:p, space :::p, comp viewCart:::p:55:p, space :::p, comp foodCartButton:::p:52:p, space :::p, comp userProfileButton:::p:52:p, space :::p, comp projectDetailsButton:::p:52:p, space u:::p, comp usernameLabel:::p::p, space :::p, comp logoutLabel:::p::p, space ::26:x}, comp subHomePanel::t:::x}"
 		} ) {
 			name: "panel"
+			"background": new java.awt.Color( 0, 0, 0, 255 )
 			auxiliary() {
 				"JavaCodeGenerator.variableModifiers": 1
 			}
@@ -16,6 +17,7 @@ new FormModel {
 				"$verticalGroup": "par l {space :0:0:x}"
 			} ) {
 				name: "subHomePanel"
+				"background": new java.awt.Color( 0, 0, 0, 255 )
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 9
 				}

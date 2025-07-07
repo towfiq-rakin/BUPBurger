@@ -1,15 +1,16 @@
-JFDML JFormDesigner: "7.0.7.0.1134" Java: "17.0.3" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.4.0.393" Java: "21.0.5" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {par l {seq l {space :p:25:p, comp label1:::p:215:p}, seq l {space :p:36:p, par l {seq l {space :p:56:p, comp logoutLabel:::p::p}, comp label2::l:p:177:p}}, comp manageUsersButton::l:p:249:p, comp addUserButton:::p:249:p, comp addFoodsButton::l:p:249:p, comp projectDetailsButton::l:p:249:p}, space :p:28:p, comp subAdminPanel:::::x, space :::p}}"
+			"$horizontalGroup": "par l {seq t {par l {seq l {space :p:36:p, par l {seq l {space :p:56:p, comp logoutLabel:::p::p}, comp label2::l:p:177:p}}, seq l {space :p:25:p, par l {comp manageUsersButton::l:p:224:p, comp label1:::p:215:p, comp addUserButton::l:p:224:p, comp addFoodsButton::l:p:224:p, comp projectDetailsButton::l:p:224:p}}}, space :p:28:p, comp subAdminPanel:::::x, space :::p}}"
 			"$verticalGroup": "par l {seq t {space :p:26:p, comp label1::::92:x, space :p:27:p, comp manageUsersButton:::p:52:p, space u:::p, comp addUserButton:::p:52:p, space u:::p, comp addFoodsButton:::p:52:p, space u:::p, comp projectDetailsButton:::p:52:p, space :p:70:p, comp label2:::p::p, space :::p, comp logoutLabel:::p::p, space :p:46:p}, seq l {space :::p, comp subAdminPanel:::::x, space :::p}}"
 		} ) {
 			name: "panel"
 			"maximumSize": new java.awt.Dimension( 1025, 575 )
 			"minimumSize": new java.awt.Dimension( 1025, 575 )
+			"background": new java.awt.Color( 0, 0, 0, 255 )
 			auxiliary() {
 				"JavaCodeGenerator.variableModifiers": 1
 			}
@@ -18,6 +19,7 @@ new FormModel {
 				"$verticalGroup": "par l {space :0:563:x}"
 			} ) {
 				name: "subAdminPanel"
+				"background": new java.awt.Color( 0, 0, 0, 255 )
 				auxiliary() {
 					"JavaCodeGenerator.variableModifiers": 9
 				}
@@ -78,4 +80,3 @@ new FormModel {
 		} )
 	}
 }
-

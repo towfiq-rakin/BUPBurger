@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        mainFrame.setTitle("BearBurger");
+        mainFrame.setTitle("BUPBurger");
         mainFrame.setResizable(false);
         MainPanel mainPanel = new MainPanel();
         mainFrame.setContentPane(mainPanel.panel);

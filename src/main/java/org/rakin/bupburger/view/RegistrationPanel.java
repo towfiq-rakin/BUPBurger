@@ -75,6 +75,10 @@ public class RegistrationPanel extends JPanel {
         } else dialogueBox("Fill out all the fields properly.");
     }
 
+    private void registerMouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
@@ -103,6 +107,7 @@ public class RegistrationPanel extends JPanel {
             panel.setMaximumSize(new Dimension(1025, 575));
             panel.setPreferredSize(new Dimension(1025, 575));
             panel.setMinimumSize(new Dimension(1025, 575));
+            panel.setBackground(Color.black);
 
             //---- label1 ----
             label1.setText("Create an Account");
@@ -135,11 +140,12 @@ public class RegistrationPanel extends JPanel {
             //---- loginLabel ----
             loginLabel.setText("Login");
             loginLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-            loginLabel.setForeground(new Color(56, 117, 237));
+            loginLabel.setForeground(new Color(0x3875ed));
             loginLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             loginLabel.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    registerMouseClicked(e);
                     loginLabelMouseClicked(e);
                 }
             });

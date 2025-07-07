@@ -107,8 +107,12 @@ public class HomePanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //======== subHomePanel ========
             {
+                subHomePanel.setBackground(Color.black);
+
                 GroupLayout subHomePanelLayout = new GroupLayout(subHomePanel);
                 subHomePanel.setLayout(subHomePanelLayout);
                 subHomePanelLayout.setHorizontalGroup(
@@ -124,19 +128,19 @@ public class HomePanel extends JPanel {
             //---- browseButton ----
             browseButton.setText("Browse Foods");
             browseButton.setFont(new Font("Segoe UI", Font.BOLD, 22));
-            browseButton.setBorder(new LineBorder(new Color(33, 37, 43)));
+            browseButton.setBorder(new LineBorder(new Color(0x21252b)));
             browseButton.addActionListener(e -> browse(e));
 
             //---- searchButton ----
             searchButton.setText("Search");
             searchButton.setFont(new Font("Segoe UI", Font.BOLD, 22));
-            searchButton.setBorder(new LineBorder(new Color(33, 37, 43)));
+            searchButton.setBorder(new LineBorder(new Color(0x21252b)));
             searchButton.addActionListener(e -> search(e));
 
             //---- projectDetailsButton ----
             projectDetailsButton.setText("Project Details");
             projectDetailsButton.setFont(new Font("Segoe UI", Font.BOLD, 22));
-            projectDetailsButton.setBorder(new LineBorder(new Color(33, 37, 43)));
+            projectDetailsButton.setBorder(new LineBorder(new Color(0x21252b)));
             projectDetailsButton.addActionListener(e -> projectDetails(e));
 
             //---- usernameLabel ----
@@ -147,7 +151,7 @@ public class HomePanel extends JPanel {
             //---- logoutLabel ----
             logoutLabel.setText("Logout");
             logoutLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-            logoutLabel.setForeground(new Color(255, 51, 51));
+            logoutLabel.setForeground(new Color(0xff3333));
             logoutLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             logoutLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -163,13 +167,13 @@ public class HomePanel extends JPanel {
             //---- userProfileButton ----
             userProfileButton.setText("User Profile");
             userProfileButton.setFont(new Font("Segoe UI", Font.BOLD, 22));
-            userProfileButton.setBorder(new LineBorder(new Color(33, 37, 43)));
+            userProfileButton.setBorder(new LineBorder(new Color(0x21252b)));
             userProfileButton.addActionListener(e -> userProfile(e));
 
             //---- foodCartButton ----
             foodCartButton.setText("Payment");
             foodCartButton.setFont(new Font("Segoe UI", Font.BOLD, 22));
-            foodCartButton.setBorder(new LineBorder(new Color(33, 37, 43)));
+            foodCartButton.setBorder(new LineBorder(new Color(0x21252b)));
             foodCartButton.addActionListener(e -> {
 			foodCart(e);
 			foodCart(e);
@@ -180,22 +184,26 @@ public class HomePanel extends JPanel {
             panelLayout.setHorizontalGroup(
                 panelLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup()
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(browseButton, GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                .addComponent(searchButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(userProfileButton, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(projectDetailsButton, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(usernameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(logoutLabel, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(viewCart, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(foodCartButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 255, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(panelLayout.createParallelGroup()
+                                    .addComponent(projectDetailsButton, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelLayout.createParallelGroup()
+                                        .addComponent(userProfileButton, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelLayout.createParallelGroup()
+                                            .addComponent(foodCartButton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(viewCart, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(searchButton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(browseButton, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(panelLayout.createSequentialGroup()
+                                                .addComponent(logo, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, Short.MAX_VALUE)))))))
                         .addGap(42, 42, 42)
                         .addComponent(subHomePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );

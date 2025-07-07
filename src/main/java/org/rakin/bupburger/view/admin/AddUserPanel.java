@@ -93,6 +93,8 @@ public class AddUserPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label5 ----
             label5.setText("Add Users");
             label5.setFont(new Font("Segoe UI", Font.BOLD, 45));

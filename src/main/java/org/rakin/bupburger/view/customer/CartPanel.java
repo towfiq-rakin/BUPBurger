@@ -25,10 +25,14 @@ public class CartPanel {
         panel = new JPanel();
         label6 = new JLabel();
         label2 = new JLabel();
+        TOTAL_FOODS_LABEL = new JLabel();
         label3 = new JLabel();
+        TOTAL_COST_LABEL = new JLabel();
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label6 ----
             label6.setText("Food Cart");
             label6.setFont(new Font("Segoe UI", Font.BOLD, 30));
@@ -59,7 +63,7 @@ public class CartPanel {
                         .addComponent(label6, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addContainerGap(32, Short.MAX_VALUE)
+                        .addContainerGap(36, Short.MAX_VALUE)
                         .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(label2)
@@ -94,8 +98,8 @@ public class CartPanel {
     public JPanel panel;
     private JLabel label6;
     private JLabel label2;
-    public static JLabel TOTAL_FOODS_LABEL = new JLabel();
+    public static JLabel TOTAL_FOODS_LABEL;
     private JLabel label3;
-    public static JLabel TOTAL_COST_LABEL = new JLabel();
+    public static JLabel TOTAL_COST_LABEL;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

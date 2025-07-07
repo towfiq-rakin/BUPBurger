@@ -96,6 +96,7 @@ public class LoginPanel extends JPanel {
             panel.setMaximumSize(new Dimension(1025, 575));
             panel.setMinimumSize(new Dimension(1025, 575));
             panel.setPreferredSize(new Dimension(1025, 575));
+            panel.setBackground(new Color(0x090000));
 
             //---- usernameTF ----
             usernameTF.setFont(new Font("Segoe UI", Font.PLAIN, 20));
@@ -113,7 +114,7 @@ public class LoginPanel extends JPanel {
             //---- register ----
             register.setText("Create an Account");
             register.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
-            register.setForeground(new Color(56, 117, 237));
+            register.setForeground(new Color(0x3875ed));
             register.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             register.addMouseListener(new MouseAdapter() {
                 @Override
@@ -132,7 +133,7 @@ public class LoginPanel extends JPanel {
 
             //---- forgotPassword ----
             forgotPassword.setText(" Forgot your password?");
-            forgotPassword.setForeground(new Color(56, 117, 237));
+            forgotPassword.setForeground(new Color(0x3875ed));
             forgotPassword.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 15));
             forgotPassword.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             forgotPassword.addMouseListener(new MouseAdapter() {

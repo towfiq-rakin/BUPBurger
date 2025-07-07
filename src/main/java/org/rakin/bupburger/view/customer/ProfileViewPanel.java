@@ -58,6 +58,8 @@ public class ProfileViewPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label5 ----
             label5.setText("View Details");
             label5.setFont(new Font("Segoe UI", Font.BOLD, 45));

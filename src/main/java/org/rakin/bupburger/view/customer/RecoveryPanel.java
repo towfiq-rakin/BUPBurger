@@ -51,6 +51,14 @@ public class RecoveryPanel extends JPanel {
         }
     }
 
+    private void emailTFKeyPressed(KeyEvent e) {
+        // TODO add your code here
+    }
+
+    private void emailTFKeyTyped(KeyEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
@@ -66,6 +74,8 @@ public class RecoveryPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- recoverButton ----
             recoverButton.setText("Recover");
             recoverButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
@@ -77,6 +87,7 @@ public class RecoveryPanel extends JPanel {
             emailTF.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
+                    emailTFKeyPressed(e);
                 }
                 @Override
                 public void keyReleased(KeyEvent e) {
@@ -84,6 +95,7 @@ public class RecoveryPanel extends JPanel {
                 }
                 @Override
                 public void keyTyped(KeyEvent e) {
+                    emailTFKeyTyped(e);
                 }
             });
 
@@ -106,12 +118,12 @@ public class RecoveryPanel extends JPanel {
             //---- usernameLabel ----
             usernameLabel.setText("...");
             usernameLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 22));
-            usernameLabel.setForeground(new Color(0, 153, 51));
+            usernameLabel.setForeground(new Color(0x009933));
 
             //---- passwordLabel ----
             passwordLabel.setText("...");
             passwordLabel.setFont(new Font("Segoe UI Semibold", Font.BOLD, 22));
-            passwordLabel.setForeground(new Color(0, 153, 51));
+            passwordLabel.setForeground(new Color(0x009933));
 
             //---- closeButton ----
             closeButton.setText("Close");

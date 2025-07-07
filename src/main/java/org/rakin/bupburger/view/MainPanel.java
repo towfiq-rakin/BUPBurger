@@ -28,12 +28,13 @@ public class MainPanel {
         //======== panel ========
         {
             panel.setMaximumSize(new Dimension(1025, 575));
+            panel.setBackground(Color.black);
 
             //---- buttonGetStarted ----
             buttonGetStarted.setText("Get Started");
             buttonGetStarted.setFont(new Font("Segoe UI", Font.BOLD, 22));
             buttonGetStarted.setBorderPainted(false);
-            buttonGetStarted.setBackground(new Color(102, 153, 255));
+            buttonGetStarted.setBackground(new Color(0x6699ff));
             buttonGetStarted.setForeground(Color.white);
             buttonGetStarted.addActionListener(e -> {
 			getStarted(e);

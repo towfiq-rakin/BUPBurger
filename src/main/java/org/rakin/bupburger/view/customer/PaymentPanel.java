@@ -62,6 +62,8 @@ public class PaymentPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label5 ----
             label5.setText("Food Cart");
             label5.setFont(new Font("Segoe UI", Font.BOLD, 45));
@@ -157,7 +159,7 @@ public class PaymentPanel extends JPanel {
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(298, 298, 298)
                                 .addComponent(buyButton, GroupLayout.PREFERRED_SIZE, 143, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(132, Short.MAX_VALUE))
+                        .addContainerGap(147, Short.MAX_VALUE))
             );
             panelLayout.setVerticalGroup(
                 panelLayout.createParallelGroup()
@@ -190,7 +192,7 @@ public class PaymentPanel extends JPanel {
                             .addComponent(cvvTF, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
                         .addComponent(buyButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(59, Short.MAX_VALUE))
+                        .addContainerGap(61, Short.MAX_VALUE))
             );
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

@@ -100,6 +100,10 @@ public class BrowseFoodsPanel extends JPanel {
         } catch (Exception ignored) { }
     }
 
+    private void foodTitleListValueChanged(ListSelectionEvent e) {
+        // TODO add your code here
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel = new JPanel();
@@ -115,6 +119,8 @@ public class BrowseFoodsPanel extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
+
             //---- label1 ----
             label1.setText("Browse Foods");
             label1.setFont(new Font("Segoe UI", Font.BOLD, 45));
@@ -133,6 +139,7 @@ public class BrowseFoodsPanel extends JPanel {
 
                 //---- foodTitleList ----
                 foodTitleList.setFont(foodTitleList.getFont().deriveFont(foodTitleList.getFont().getSize() + 5f));
+                foodTitleList.addListSelectionListener(e -> foodTitleListValueChanged(e));
                 scrollPane2.setViewportView(foodTitleList);
             }
 

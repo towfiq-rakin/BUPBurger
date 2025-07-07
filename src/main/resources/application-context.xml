@@ -4,10 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="dataSource" class="com.mysql.cj.jdbc.MysqlDataSource">
-        <property name="databaseName" value="bearburger_swing"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/bearburger_swing"/>
+        <property name="databaseName" value="bupburger"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/bupburger"/>
         <property name="user" value="root"/>
-        <property name="password" value=""/>
+        <property name="password" value="Rakin@1144"/>
     </bean>
 
     <bean id="userDao" class="org.rakin.bupburger.dao.UserDao">

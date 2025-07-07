@@ -63,6 +63,7 @@ public class FoodDetails {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
 
             //---- foodTitle ----
             foodTitle.setText("Food Name");
