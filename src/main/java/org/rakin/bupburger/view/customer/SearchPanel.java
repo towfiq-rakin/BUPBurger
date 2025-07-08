@@ -50,7 +50,7 @@ public class SearchPanel extends JPanel {
     private void foodDetails(ActionEvent e) {
 
         if(selectedFood != null) {
-            FOOD_DETAILS_FRAME.setTitle("BearBurger");
+            FOOD_DETAILS_FRAME.setTitle("BUPBurger");
             FOOD_DETAILS_FRAME.setResizable(false);
             FoodDetails foodDetails = new FoodDetails(selectedFood.getId());
             FOOD_DETAILS_FRAME.setContentPane(foodDetails.panel);

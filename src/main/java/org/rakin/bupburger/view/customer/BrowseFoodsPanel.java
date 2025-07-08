@@ -77,7 +77,7 @@ public class BrowseFoodsPanel extends JPanel {
 
         try {
             if (selectedTitle != null && selectedCategory != null) {
-                FOOD_DETAILS_FRAME.setTitle("BearBurger");
+                FOOD_DETAILS_FRAME.setTitle("BUP Burger");
                 FOOD_DETAILS_FRAME.setResizable(false);
                 FoodDetails foodDetails = new FoodDetails(selectedCategory, selectedTitle);
                 FOOD_DETAILS_FRAME.setContentPane(foodDetails.panel);

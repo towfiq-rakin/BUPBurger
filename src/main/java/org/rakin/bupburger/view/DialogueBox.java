@@ -10,7 +10,7 @@ public class DialogueBox {
 
     public static void dialogueBox(String message){
 
-        dialogueFrame.setTitle("BearBurger");
+        dialogueFrame.setTitle("BUP Burger");
         dialogueFrame.setResizable(false);
 
         DialogueBoxPanel dialogueBoxPanel = new DialogueBoxPanel(message);

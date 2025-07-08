@@ -38,7 +38,7 @@ public class LoginPanel extends JPanel {
     }
 
     private void forgotPasswordMouseClicked(MouseEvent e) {
-        recoveryFrame.setTitle("BearBurger");
+        recoveryFrame.setTitle("BUP Burger");
         recoveryFrame.setResizable(false);
         RecoveryPanel recoveryPanel = new RecoveryPanel();
         recoveryFrame.setContentPane(recoveryPanel.panel);

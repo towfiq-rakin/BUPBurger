@@ -57,7 +57,7 @@ public class ManageUsersPanel extends JPanel {
     private void modify(ActionEvent e) {
 
         try{
-            adminModifyUserFrame.setTitle("BearBurger");
+            adminModifyUserFrame.setTitle("BUP Burger");
             adminModifyUserFrame.setResizable(false);
 //            ProfileModifyPanel profileModifyPanel = new ProfileModifyPanel(selectedUser);
             ModifyUser modifyUser = new ModifyUser(selectedUser);
