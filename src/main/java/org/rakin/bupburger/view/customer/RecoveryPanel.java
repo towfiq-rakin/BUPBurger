@@ -2,6 +2,7 @@ package org.rakin.bupburger.view.customer;
 
 import org.rakin.bupburger.dao.UserDao;
 import org.rakin.bupburger.domain.User;
+import org.rakin.bupburger.util.EmailService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,7 +15,8 @@ import static org.rakin.bupburger.view.DialogueBox.dialogueBox;
 import static org.rakin.bupburger.view.LoginPanel.recoveryFrame;
 
 public class RecoveryPanel extends JPanel {
-
+    User user = null;
+    String OTP = null;
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
     UserDao userDao = applicationContext.getBean("userDao", UserDao.class);
 
@@ -28,34 +30,53 @@ public class RecoveryPanel extends JPanel {
 
     private void recoverButton(ActionEvent e) {
 
-        User user = userDao.getByEmail(emailTF.getText());
+        String userOTP = otpTF.getText().trim();
+
+        if(emailTF.getText().isEmpty()) {
+            dialogueBox("Please enter your email address.");
+            return;
+        }
+
+        if(userOTP != null && !userOTP.equals(OTP)) {
+            dialogueBox("Invalid OTP! Please try again.");
+            return;
+        }
+
+        if(userOTP != null && userOTP.equals(OTP)){
+            usernameLabel.setText(user.getUsername());
+            passwordLabel.setText(user.getPass());
+            dialogueBox("Your account has been successfully recovered.");
+        }
+
+
+    }
+    
+    private void emailTFKeyPressed(KeyEvent e) {
+        // TODO add your code here
+    }
+
+    private void emailTFKeyTyped(KeyEvent e) {
+        // TODO add your code here
+    }
+
+    private void getOTP(ActionEvent e) {
+        if(emailTF.getText().isEmpty()) {
+            dialogueBox("Please enter your email address.");
+            return;
+        }
+
+        user = userDao.getByEmail(emailTF.getText());
 
         if (user == null) {
             dialogueBox("User not found!");
             return;
         }
 
-        usernameLabel.setText(user.getUsername());
-        passwordLabel.setText(user.getPass());
-        dialogueBox("Your account has been successfully recovered.");
+        dialogueBox("OTP has been sent to your email address.");
+        OTP = EmailService.sendVerificationCode(user.getEmail());
     }
 
     private void emailTFKeyReleased(KeyEvent e) {
-
-        User user = userDao.getByEmail(emailTF.getText());
-
-        if (user != null){
-            usernameLabel.setText(user.getUsername());
-            passwordLabel.setText(user.getPass());
-            dialogueBox("Your account has been successfully recovered.");
-        }
-    }
-
-    private void emailTFKeyPressed(KeyEvent e) {
-        // TODO add your code here
-    }
-
-    private void emailTFKeyTyped(KeyEvent e) {
         // TODO add your code here
     }
 
@@ -71,6 +92,9 @@ public class RecoveryPanel extends JPanel {
         usernameLabel = new JLabel();
         passwordLabel = new JLabel();
         closeButton = new JButton();
+        otpTF = new JTextField();
+        label5 = new JLabel();
+        otpButton = new JButton();
 
         //======== panel ========
         {
@@ -131,60 +155,83 @@ public class RecoveryPanel extends JPanel {
             closeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             closeButton.addActionListener(e -> close(e));
 
+            //---- label5 ----
+            label5.setText("OTP");
+            label5.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+
+            //---- otpButton ----
+            otpButton.setText("Get OTP");
+            otpButton.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
+            otpButton.addActionListener(e -> getOTP(e));
+
             GroupLayout panelLayout = new GroupLayout(panel);
             panel.setLayout(panelLayout);
             panelLayout.setHorizontalGroup(
                 panelLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label1)
+                        .addGap(71, 71, 71))
                     .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(83, 83, 83)
                         .addGroup(panelLayout.createParallelGroup()
                             .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(label2)
+                                .addGroup(panelLayout.createParallelGroup()
                                     .addGroup(panelLayout.createSequentialGroup()
-                                        .addGroup(panelLayout.createParallelGroup()
-                                            .addGroup(panelLayout.createSequentialGroup()
-                                                .addGap(12, 12, 12)
-                                                .addGroup(panelLayout.createParallelGroup()
-                                                    .addComponent(label4)
-                                                    .addComponent(label3))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(panelLayout.createParallelGroup()
-                                                    .addComponent(usernameLabel)
-                                                    .addComponent(passwordLabel)))
-                                            .addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                                        .addGap(34, 34, 34)
-                                        .addComponent(recoverButton, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(emailTF)))
+                                        .addGap(6, 6, 6)
+                                        .addComponent(label5, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label2))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelLayout.createSequentialGroup()
-                                .addGap(71, 71, 71)
-                                .addComponent(label1)))
-                        .addContainerGap(73, Short.MAX_VALUE))
+                                .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(emailTF, GroupLayout.Alignment.LEADING)
+                                    .addGroup(GroupLayout.Alignment.LEADING, panelLayout.createSequentialGroup()
+                                        .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                            .addComponent(closeButton, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(panelLayout.createParallelGroup()
+                                                .addGroup(panelLayout.createSequentialGroup()
+                                                    .addComponent(label3)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(usernameLabel))
+                                                .addGroup(panelLayout.createSequentialGroup()
+                                                    .addComponent(label4)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(passwordLabel)))
+                                            .addComponent(otpTF))
+                                        .addGap(37, 37, 37)
+                                        .addGroup(panelLayout.createParallelGroup()
+                                            .addComponent(recoverButton, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(otpButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(107, 107, 107))))
             );
             panelLayout.setVerticalGroup(
                 panelLayout.createParallelGroup()
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                        .addGap(19, 19, 19)
                         .addComponent(label1)
-                        .addGap(36, 36, 36)
+                        .addGap(18, 18, 18)
                         .addComponent(label2)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(emailTF, GroupLayout.PREFERRED_SIZE, 44, GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label5)
+                        .addGap(5, 5, 5)
                         .addGroup(panelLayout.createParallelGroup()
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(label3)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(label4))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(usernameLabel)
-                                .addGap(6, 6, 6)
-                                .addComponent(passwordLabel)))
-                        .addGap(44, 44, 44)
+                            .addComponent(otpButton, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(otpTF, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(recoverButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(55, Short.MAX_VALUE))
+                            .addComponent(label3)
+                            .addComponent(usernameLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(label4)
+                            .addComponent(passwordLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(closeButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(recoverButton, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27))
             );
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -201,5 +248,8 @@ public class RecoveryPanel extends JPanel {
     private JLabel usernameLabel;
     private JLabel passwordLabel;
     private JButton closeButton;
+    private JTextField otpTF;
+    private JLabel label5;
+    private JButton otpButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

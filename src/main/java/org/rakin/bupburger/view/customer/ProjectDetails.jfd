@@ -8,12 +8,14 @@ new FormModel {
 			"$verticalGroup": "par l {comp label1::l::563:x}"
 		} ) {
 			name: "panel"
+			"background": new java.awt.Color( 0, 0, 0, 255 )
 			auxiliary() {
 				"JavaCodeGenerator.variableModifiers": 1
 			}
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/img/logo-3.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/img/contribution.png" )
+				"background": new java.awt.Color( 0, 0, 0, 255 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

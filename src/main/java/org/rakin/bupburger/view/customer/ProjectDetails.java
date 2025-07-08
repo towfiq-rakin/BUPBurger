@@ -1,5 +1,6 @@
 package org.rakin.bupburger.view.customer;
 
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -16,9 +17,11 @@ public class ProjectDetails extends JPanel {
 
         //======== panel ========
         {
+            panel.setBackground(Color.black);
 
             //---- label1 ----
-            label1.setIcon(new ImageIcon(getClass().getResource("/img/logo-3.png")));
+            label1.setIcon(new ImageIcon(getClass().getResource("/img/contribution.png")));
+            label1.setBackground(Color.black);
 
             GroupLayout panelLayout = new GroupLayout(panel);
             panel.setLayout(panelLayout);

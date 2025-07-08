@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {par l {seq l {space :p:83:p, par l:::p {comp label2::l:p::p, seq l {par l {seq {space :p:12:p, par l {comp label4::l:p::p, comp label3::l:p::p}, space u:::p, par l {comp usernameLabel:::p::p, comp passwordLabel:::p::p}}, comp closeButton::l:p:149:p}, space :p:34:p, comp recoverButton:::p:149:p}, comp emailTF::l:::x}}, seq l {space :p:71:p, comp label1:::p::p}}, space ::73:x}}"
-			"$verticalGroup": "par l {seq l {space :p:46:p, comp label1:::p::p, space :p:36:p, comp label2:::p::p, space :::p, comp emailTF:::p:44:p, space :p:30:p, par l {seq l {comp label3:::p::p, space :::p, comp label4:::p::p}, seq l {comp usernameLabel:::p::p, space :6:6:p, comp passwordLabel:::p::p}}, space :p:44:p, par b {comp recoverButton::b:p:40:p, comp closeButton::b:p:40:p}, space ::55:x}}"
+			"$horizontalGroup": "par l {seq t {space :::x, comp label1:::p::p, space :p:71:p}, seq l {space :p:83:p, par l {seq {par l {seq {space :6:6:p, comp label5:::p:65:p}, comp label2:::p::p}, space :0:0:x}, seq {par t {comp emailTF::l:::x, seq l {par t {comp closeButton::l:p:149:p, par l:t {seq {comp label3:::p::p, space u:::p, comp usernameLabel:::p::p}, seq {comp label4:::p::p, space u:::p, comp passwordLabel:::p::p}}, comp otpTF::t:::x}, space :p:37:p, par l {comp recoverButton:::p:149:p, comp otpButton:::::x}}}, space :p:107:p}}}}"
+			"$verticalGroup": "par l {seq l {space :p:19:p, comp label1:::p::p, space :p:18:p, comp label2:::p::p, space :::p, comp emailTF:::p:44:p, space u:::p, comp label5:::p::p, space :p:5:p, par l {comp otpButton:::p:48:p, comp otpTF:::p:48:p}, space ::25:x, par b {comp label3::b:p::p, comp usernameLabel::b:p::p}, space s:::p, par b {comp label4::b:p::p, comp passwordLabel::b:p::p}, space s:::p, par b {comp closeButton::b:p:40:p, comp recoverButton::b:p:40:p}, space :p:27:p}}"
 		} ) {
 			name: "panel"
 			"background": new java.awt.Color( 0, 0, 0, 255 )
@@ -64,6 +64,20 @@ new FormModel {
 				"font": #Font0
 				"cursor": #Cursor0
 				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "close", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "otpTF"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "OTP"
+				"font": new java.awt.Font( "Segoe UI Semibold", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "otpButton"
+				"text": "Get OTP"
+				"font": new java.awt.Font( "Segoe UI Semibold", 0, 17 )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "getOTP", true ) )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
