@@ -26,6 +26,21 @@ public class FoodDao
         }
     }
 
+    public Food searchById(int foodId) {
+        Food searchFood = null;
+        List<Food> foods;
+        try {
+            foods = this.jdbcTemplate.query("select * from foods where id = " + foodId + ";",
+                    (resultSet, rowNum) -> setFoodDetails(resultSet));
+
+            if (foods.size() > 0) {
+                searchFood = foods.get(0);
+            }
+        } catch (Exception ignored) { }
+
+        return searchFood;
+    }
+
     public List<Food> getAllFoods() {
 
         return this.jdbcTemplate.query(
