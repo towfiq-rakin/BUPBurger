@@ -8,6 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -23,8 +24,12 @@ public class CartPanel {
 
     Food selectedFood = null;
     List<Integer> allFoodsId = BrowseFoodsPanel.selectedFoodId;
-    List<Food> allFoods;
+    List<Food> allFoods = new ArrayList<>();
     Object[][] data;
+
+    // Initialize static labels first
+    public static JLabel TOTAL_FOODS_LABEL = new JLabel("00");
+    public static JLabel TOTAL_COST_LABEL = new JLabel("00");
 
     void loadAllFoods() {
         for(int i = 0; i < allFoodsId.size(); i++) {
@@ -76,8 +81,10 @@ public class CartPanel {
     private void scrollPane1MouseClicked(MouseEvent e) {
         DefaultTableModel tableModel = (DefaultTableModel) foodTabale.getModel();
         int selectedIndex = foodTabale.getSelectedRow();
-        int foodID = (int) tableModel.getValueAt(selectedIndex, 0);
-        selectedFood = foodDAO.searchById(foodID);
+        //int foodID = (int) tableModel.getValueAt(selectedIndex, 0);
+        String category = (String) tableModel.getValueAt(selectedIndex, 0);
+        String title = (String) tableModel.getValueAt(selectedIndex, 1);
+        selectedFood = foodDAO.getFoodDetails(category, title);
     }
 
     private void initComponents() {
@@ -85,9 +92,7 @@ public class CartPanel {
         panel = new JPanel();
         label6 = new JLabel();
         label2 = new JLabel();
-        TOTAL_FOODS_LABEL = new JLabel();
         label3 = new JLabel();
-        TOTAL_COST_LABEL = new JLabel();
         scrollPane1 = new JScrollPane();
         foodTabale = new JTable();
         RemoveButton = new JButton();
@@ -106,7 +111,6 @@ public class CartPanel {
             label2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //---- TOTAL_FOODS_LABEL ----
-            TOTAL_FOODS_LABEL.setText("00");
             TOTAL_FOODS_LABEL.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //---- label3 ----
@@ -114,7 +118,6 @@ public class CartPanel {
             label3.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //---- TOTAL_COST_LABEL ----
-            TOTAL_COST_LABEL.setText("00");
             TOTAL_COST_LABEL.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //======== scrollPane1 ========
@@ -185,9 +188,7 @@ public class CartPanel {
     public JPanel panel;
     private JLabel label6;
     private JLabel label2;
-    public static JLabel TOTAL_FOODS_LABEL;
     private JLabel label3;
-    public static JLabel TOTAL_COST_LABEL;
     private JScrollPane scrollPane1;
     private JTable foodTabale;
     private JButton RemoveButton;
