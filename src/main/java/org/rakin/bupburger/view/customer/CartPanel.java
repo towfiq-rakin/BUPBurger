@@ -43,23 +43,36 @@ public class CartPanel {
     }
 
     void loadDataset() {
-        if(allFoods == null) {
-            System.out.println("All foods list is null, initializing with an empty list.");
-            return;
-        }
+        // Create new data array
         data = new Object[allFoods.size()][3];
+        String[] columnNames = {"Category", "Title", "Price"};
+
+        // Fill data array
         for (int i = 0; i < allFoods.size(); i++) {
             data[i][0] = allFoods.get(i).getCategory();
             data[i][1] = allFoods.get(i).getTitle();
             data[i][2] = allFoods.get(i).getPrice();
-            foodTabale.setModel(new javax.swing.table.DefaultTableModel(
-                data, new String[]{"Category", "Title", "Price"}
-            ));
         }
+
+        // Create and set new model
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        foodTabale.setModel(model);
     }
 
     public CartPanel() {
         initComponents();
+        // Add selection listener to the table instead of scrollPane
+        foodTabale.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int selectedIndex = foodTabale.getSelectedRow();
+                if (selectedIndex >= 0) {
+                    String category = (String) foodTabale.getModel().getValueAt(selectedIndex, 0);
+                    String title = (String) foodTabale.getModel().getValueAt(selectedIndex, 1);
+                    selectedFood = foodDAO.getFoodDetails(category, title);
+                }
+            }
+        });
         loadAllFoods();
         loadDataset();
         TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
@@ -67,24 +80,32 @@ public class CartPanel {
     }
 
     private void Remove(ActionEvent e) {
-        try{
+        try {
+            if (selectedFood == null) {
+                System.out.println("No food selected to remove");
+                return;
+            }
+
+            // Remove from both lists
             allFoods.remove(selectedFood);
+            allFoodsId.remove(Integer.valueOf(selectedFood.getId()));  // Remove by value, not index
+
+            // Update totals
             TOTAL_FOOD_NUMBER--;
             TOTAL_COST -= selectedFood.getPrice();
             TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
             TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
-            loadDataset();
-        }
-        catch (Exception ignored){ }
-    }
 
-    private void scrollPane1MouseClicked(MouseEvent e) {
-        DefaultTableModel tableModel = (DefaultTableModel) foodTabale.getModel();
-        int selectedIndex = foodTabale.getSelectedRow();
-        //int foodID = (int) tableModel.getValueAt(selectedIndex, 0);
-        String category = (String) tableModel.getValueAt(selectedIndex, 0);
-        String title = (String) tableModel.getValueAt(selectedIndex, 1);
-        selectedFood = foodDAO.getFoodDetails(category, title);
+            // Update table
+
+
+            // Clear selection
+            selectedFood = null;
+            //System.out.println("Food removed successfully");
+        } catch (Exception ex) {
+            System.out.println("Error removing food: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
     private void initComponents() {
@@ -122,12 +143,6 @@ public class CartPanel {
 
             //======== scrollPane1 ========
             {
-                scrollPane1.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        scrollPane1MouseClicked(e);
-                    }
-                });
                 scrollPane1.setViewportView(foodTabale);
             }
 

@@ -110,8 +110,8 @@ public class BrowseFoodsPanel extends JPanel {
             TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
             TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
             selectedFoodId.add(selectedFood.getId());
-            System.out.println("Successfully added food to cart - ID: " + selectedFood.getId());
-            System.out.println("Cart now contains " + selectedFoodId.size() + " items");
+            //System.out.println("Successfully added food to cart - ID: " + selectedFood.getId());
+            //System.out.println("Cart now contains " + selectedFoodId.size() + " items");
         } catch (Exception ex) {
             System.out.println("Error in addToCart: " + ex.getMessage());
             ex.printStackTrace();
