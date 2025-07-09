@@ -27,6 +27,7 @@ public class BrowseFoodsPanel extends JPanel {
     String selectedTitle = null;
     Food selectedFood = null;
     static List<Food> allSelectedFoods;
+    static List<Integer> selectedFoodId;
 
     public BrowseFoodsPanel() {
         initComponents();
@@ -94,17 +95,20 @@ public class BrowseFoodsPanel extends JPanel {
         try {
             selectedFood = foodDao.getFoodDetails(selectedCategory, selectedTitle);
 
+
             TOTAL_FOOD_NUMBER++;
             TOTAL_COST += selectedFood.getPrice();
             TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
             TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
-
-            allSelectedFoods.add(selectedFood);
+            selectedFoodId.add(selectedFood.getId());
+            System.out.println("Selected Food ID: " + selectedFood.getId());
+            System.out.println("Selected Food ID: " + selectedFoodId.get(0));
+            //allSelectedFoods.add(selectedFood);
         } catch (Exception ignored) { }
     }
 
-    public List<Food> getSelectedFood() {
-        return allSelectedFoods;
+    public static List<Integer> getSelectedFood() {
+        return selectedFoodId;
     }
 
     private void foodTitleListValueChanged(ListSelectionEvent e) {

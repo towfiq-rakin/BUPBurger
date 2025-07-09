@@ -22,10 +22,26 @@ public class CartPanel {
     FoodDao foodDAO = applicationContext.getBean("foodDao", FoodDao.class);
 
     Food selectedFood = null;
-    List<Food> allFoods = BrowseFoodsPanel.allSelectedFoods;
+    List<Integer> allFoodsId = BrowseFoodsPanel.selectedFoodId;
+    List<Food> allFoods;
     Object[][] data;
 
+    void loadAllFoods() {
+        for(int i = 0; i < allFoodsId.size(); i++) {
+            Food food = foodDAO.searchById(allFoodsId.get(i));
+            if(food != null) {
+                allFoods.add(food);
+            } else {
+                System.out.println("Food with ID " + allFoodsId.get(i) + " not found.");
+            }
+        }
+    }
+
     void loadDataset() {
+        if(allFoods == null) {
+            System.out.println("All foods list is null, initializing with an empty list.");
+            return;
+        }
         data = new Object[allFoods.size()][3];
         for (int i = 0; i < allFoods.size(); i++) {
             data[i][0] = allFoods.get(i).getCategory();
@@ -39,13 +55,13 @@ public class CartPanel {
 
     public CartPanel() {
         initComponents();
+        loadAllFoods();
         loadDataset();
         TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
         TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
     }
 
     private void Remove(ActionEvent e) {
-        // TODO add your code here
         try{
             allFoods.remove(selectedFood);
             TOTAL_FOOD_NUMBER--;
@@ -58,7 +74,6 @@ public class CartPanel {
     }
 
     private void scrollPane1MouseClicked(MouseEvent e) {
-        // TODO add your code here
         DefaultTableModel tableModel = (DefaultTableModel) foodTabale.getModel();
         int selectedIndex = foodTabale.getSelectedRow();
         int foodID = (int) tableModel.getValueAt(selectedIndex, 0);
