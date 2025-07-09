@@ -80,16 +80,26 @@ public class HomePanel extends JPanel {
         subHomePanel.validate();
     }
 
+//    private void viewCart(ActionEvent e) {
+//        cartFrame.setTitle("Food Cart");
+//        cartFrame.setResizable(false);
+//        CartPanel cartPanel = new CartPanel();
+//        cartFrame.setContentPane(cartPanel.panel);
+//        cartFrame.pack();
+//        cartFrame.setLocationRelativeTo(null);
+//        cartFrame.setVisible(true);
+//        cartFrame.setAlwaysOnTop(true);
+//    }
+
     private void viewCart(ActionEvent e) {
-        cartFrame.setTitle("Food Cart");
-        cartFrame.setResizable(false);
         CartPanel cartPanel = new CartPanel();
-        cartFrame.setContentPane(cartPanel.panel);
-        cartFrame.pack();
-        cartFrame.setLocationRelativeTo(null);
-        cartFrame.setVisible(true);
-        cartFrame.setAlwaysOnTop(true);
+        subHomePanel.setLayout(new java.awt.BorderLayout());
+        subHomePanel.removeAll();
+        subHomePanel.add(cartPanel.panel);
+        subHomePanel.validate();
     }
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

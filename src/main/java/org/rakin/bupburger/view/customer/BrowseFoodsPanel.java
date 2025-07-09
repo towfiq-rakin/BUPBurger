@@ -10,6 +10,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.rakin.bupburger.view.customer.CartPanel.TOTAL_COST_LABEL;
@@ -25,6 +26,9 @@ public class BrowseFoodsPanel extends JPanel {
     
     String selectedCategory = null;
     String selectedTitle = null;
+    Food selectedFood = null;
+    static List<Food> allSelectedFoods = new ArrayList<>();
+    static List<Integer> selectedFoodId = new ArrayList<>();
 
     public BrowseFoodsPanel() {
         initComponents();
@@ -90,14 +94,32 @@ public class BrowseFoodsPanel extends JPanel {
 
     private void addToCart(ActionEvent e) {
         try {
-            Food selectedFood = foodDao.getFoodDetails(selectedCategory, selectedTitle);
+            if (selectedCategory == null || selectedTitle == null) {
+                System.out.println("Error: Category or Title is null");
+                return;
+            }
+
+            selectedFood = foodDao.getFoodDetails(selectedCategory, selectedTitle);
+            if (selectedFood == null) {
+                System.out.println("Error: Could not get food details from database");
+                return;
+            }
 
             TOTAL_FOOD_NUMBER++;
             TOTAL_COST += selectedFood.getPrice();
             TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
             TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
+            selectedFoodId.add(selectedFood.getId());
+            //System.out.println("Successfully added food to cart - ID: " + selectedFood.getId());
+            //System.out.println("Cart now contains " + selectedFoodId.size() + " items");
+        } catch (Exception ex) {
+            System.out.println("Error in addToCart: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
 
-        } catch (Exception ignored) { }
+    public static List<Integer> getSelectedFood() {
+        return selectedFoodId;
     }
 
     private void foodTitleListValueChanged(ListSelectionEvent e) {
