@@ -27,11 +27,9 @@ public class CartPanel {
     List<Food> allFoods = new ArrayList<>();
     Object[][] data;
 
-    // Initialize static labels first
-    public static JLabel TOTAL_FOODS_LABEL = new JLabel("00");
-    public static JLabel TOTAL_COST_LABEL = new JLabel("00");
 
     void loadAllFoods() {
+        allFoods.clear(); // Clear existing foods before loading
         for(int i = 0; i < allFoodsId.size(); i++) {
             Food food = foodDAO.searchById(allFoodsId.get(i));
             if(food != null) {
@@ -47,32 +45,31 @@ public class CartPanel {
         data = new Object[allFoods.size()][3];
         String[] columnNames = {"Category", "Title", "Price"};
 
+        System.out.println("Updating table with " + allFoods.size() + " items");
+
         // Fill data array
         for (int i = 0; i < allFoods.size(); i++) {
-            data[i][0] = allFoods.get(i).getCategory();
-            data[i][1] = allFoods.get(i).getTitle();
-            data[i][2] = allFoods.get(i).getPrice();
+            Food food = allFoods.get(i);
+            data[i][0] = food.getCategory();
+            data[i][1] = food.getTitle();
+            data[i][2] = food.getPrice();
+            System.out.println("Added to table: " + food.getTitle());
         }
 
-        // Create and set new model
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        // Create new model and set it
+        DefaultTableModel model = new DefaultTableModel(data, columnNames) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Make table read-only
+            }
+        };
         foodTabale.setModel(model);
+        foodTabale.revalidate();
+        foodTabale.repaint();
     }
 
     public CartPanel() {
         initComponents();
-        // Add selection listener to the table instead of scrollPane
-        foodTabale.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                int selectedIndex = foodTabale.getSelectedRow();
-                if (selectedIndex >= 0) {
-                    String category = (String) foodTabale.getModel().getValueAt(selectedIndex, 0);
-                    String title = (String) foodTabale.getModel().getValueAt(selectedIndex, 1);
-                    selectedFood = foodDAO.getFoodDetails(category, title);
-                }
-            }
-        });
         loadAllFoods();
         loadDataset();
         TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
@@ -86,9 +83,11 @@ public class CartPanel {
                 return;
             }
 
+            System.out.println("Removing food: " + selectedFood.getTitle());
+
             // Remove from both lists
             allFoods.remove(selectedFood);
-            allFoodsId.remove(Integer.valueOf(selectedFood.getId()));  // Remove by value, not index
+            allFoodsId.remove(Integer.valueOf(selectedFood.getId()));
 
             // Update totals
             TOTAL_FOOD_NUMBER--;
@@ -97,14 +96,29 @@ public class CartPanel {
             TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
 
             // Update table
-
+            loadAllFoods();
+            loadDataset();
 
             // Clear selection
             selectedFood = null;
-            //System.out.println("Food removed successfully");
+            System.out.println("Food removed successfully. Remaining items: " + allFoods.size());
         } catch (Exception ex) {
             System.out.println("Error removing food: " + ex.getMessage());
             ex.printStackTrace();
+        }
+    }
+
+    private void scrollPane1MouseClicked(MouseEvent e) {
+        // TODO add your code here
+    }
+
+    private void foodTabaleMouseClicked(MouseEvent e) {
+        // TODO add your code here
+        int selectedIndex = foodTabale.getSelectedRow();
+        if (selectedIndex >= 0) {
+            String category = (String) foodTabale.getModel().getValueAt(selectedIndex, 0);
+            String title = (String) foodTabale.getModel().getValueAt(selectedIndex, 1);
+            selectedFood = foodDAO.getFoodDetails(category, title);
         }
     }
 
@@ -113,7 +127,9 @@ public class CartPanel {
         panel = new JPanel();
         label6 = new JLabel();
         label2 = new JLabel();
+        TOTAL_FOODS_LABEL = new JLabel();
         label3 = new JLabel();
+        TOTAL_COST_LABEL = new JLabel();
         scrollPane1 = new JScrollPane();
         foodTabale = new JTable();
         RemoveButton = new JButton();
@@ -132,6 +148,7 @@ public class CartPanel {
             label2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //---- TOTAL_FOODS_LABEL ----
+            TOTAL_FOODS_LABEL.setText("00");
             TOTAL_FOODS_LABEL.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //---- label3 ----
@@ -139,10 +156,25 @@ public class CartPanel {
             label3.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //---- TOTAL_COST_LABEL ----
+            TOTAL_COST_LABEL.setText("00");
             TOTAL_COST_LABEL.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 22));
 
             //======== scrollPane1 ========
             {
+                scrollPane1.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        scrollPane1MouseClicked(e);
+                    }
+                });
+
+                //---- foodTabale ----
+                foodTabale.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        foodTabaleMouseClicked(e);
+                    }
+                });
                 scrollPane1.setViewportView(foodTabale);
             }
 
@@ -203,7 +235,9 @@ public class CartPanel {
     public JPanel panel;
     private JLabel label6;
     private JLabel label2;
+    public static JLabel TOTAL_FOODS_LABEL = new JLabel("00");
     private JLabel label3;
+    public static JLabel TOTAL_COST_LABEL = new JLabel("00");
     private JScrollPane scrollPane1;
     private JTable foodTabale;
     private JButton RemoveButton;

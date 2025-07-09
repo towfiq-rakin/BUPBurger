@@ -49,6 +49,7 @@ new FormModel {
 				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "scrollPane1MouseClicked", true ) )
 				add( new FormComponent( "javax.swing.JTable" ) {
 					name: "foodTabale"
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "foodTabaleMouseClicked", true ) )
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {

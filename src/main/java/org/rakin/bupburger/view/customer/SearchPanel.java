@@ -87,6 +87,7 @@ public class SearchPanel extends JPanel {
                 TOTAL_FOOD_NUMBER ++;
                 TOTAL_FOODS_LABEL.setText(String.valueOf(TOTAL_FOOD_NUMBER));
                 TOTAL_COST_LABEL.setText(String.valueOf(TOTAL_COST));
+                //BrowseFoodsPanel.selectedFoodId.add(selectedFood.getId());
             }
         } catch (Exception ignored) { }
     }
