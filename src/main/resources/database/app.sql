@@ -28,7 +28,7 @@ CREATE TABLE foods
 ## data ##
 
 INSERT INTO users (username, email, pass, phone, gender)
-VALUES ('Rakin', 'towfiqrakin267@gmail.com', 'rakin', '+8801234567890', 'Male');
+VALUES ('Rakin', 'rakin@gmail.com', 'rakin', '+8801234567890', 'Male');
 
 INSERT INTO foods (category, title, description, price)
 VALUES ('Burger', 'Cheese Burger', 'Prepared with beef patty, cheese, burger sauce, pickles & onion', 650),
