@@ -10,9 +10,9 @@ public class EmailService {
     // Gmail SMTP settings
     private static final String HOST = "smtp.gmail.com";    // Gmail's SMTP server
     private static final String PORT = "587";              // TLS Port
-    private static final String FROM_EMAIL = "towfiqrakin267@gmail.com";
+    private static final String FROM_EMAIL = ""; // Email
 
-    private static final String APP_PASSWORD = "mllo hfvs zumw vagz";
+    private static final String APP_PASSWORD = ""; // App password
 
     public static String sendVerificationCode(String toEmail) {
         String verificationCode = generateVerificationCode();
